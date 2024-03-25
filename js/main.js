@@ -80,6 +80,42 @@ posts.forEach((singlePosts) => {
 
 });
 
+// prendiamo tutti gli elementi del dom dove deve avvenire il click per il mi piace 
+const allPutLike = document.querySelectorAll('.js-like-button')
+
+const likeIdArray = []
+console.log(likeIdArray)
+allPutLike.forEach((likeElement, index) => {
+    likeElement.addEventListener('click', function (event) {
+        // funzione che serve per evitare che nel momento in cui clicchi venga seguito il link
+        event.preventDefault();
+
+        //quando clicco su put like 
+        // mettere la classe .like-button--liked
+        this.classList.toggle("like-button--liked")
+        console.log(this)
+        // pushare nell'array vuto gli id cliccati
+        // Ottiene l'ID del post cliccato utilizzando dataset
+        const postId = this.dataset.postid;
+
+        // Pusha l'ID del post nell'array likeIdArray
+        likeIdArray.push(postId);
+        // e aumentare il contatore prendendo 
+        // l'elemento del dom
+        const counterLike = document.querySelector(`#like-counter-${postId}`)
+        counterLike.innerHTML = parseInt(counterLike.innerHTML) + 1
+
+    });
+
+});
+
+
+
+
+
+
+// console.log(allPutLike)
+// console.log(allCounterLike)
 
 
 // FUNCTIONS
@@ -108,7 +144,7 @@ function generateSinglePostTemplate(postInfo) {
             <div class="post__footer">
                 <div class="likes js-likes">
                     <div class="likes__cta">
-                        <a class="like-button  js-like-button" href="#" data-postid="1">
+                        <a class="like-button  js-like-button " href="#" data-postid="${id}">
                             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                             <span class="like-button__label">Mi Piace</span>
                         </a>
