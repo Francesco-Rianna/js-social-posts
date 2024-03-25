@@ -86,24 +86,24 @@ posts.forEach((singlePosts) => {
 // creiamo una funzione che genera il singolo post
 // post info = oggetto che contiene le informazione del singolo post
 function generateSinglePostTemplate(postInfo) {
-    console.log(postInfo)
+    const { id, content, media, author, likes, created } = postInfo;
     const postTemplate = `<div class="post">
             <div class="post__header">
                 <div class="post-meta">
                     <div class="post-meta__icon">
-                        <img class="profile-pic" src="${postInfo.author.image}" alt="Phil Mangione">
+                        <img class="profile-pic" src="${author.image}" alt="Phil Mangione">
                     </div>
                     <div class="post-meta__data">
-                        <div class="post-meta__author">${postInfo.author.name}</div>
-                        <div class="post-meta__time">${postInfo.created}</div>
+                        <div class="post-meta__author">${author.name}</div>
+                        <div class="post-meta__time">${created}</div>
                     </div>
                 </div>
             </div>
             <div class="post__text">
-            ${postInfo.content}
+            ${content}
             </div>
             <div class="post__image">
-                <img src="${postInfo.media}" alt="">
+                <img src="${media}" alt="">
             </div>
             <div class="post__footer">
                 <div class="likes js-likes">
@@ -114,7 +114,7 @@ function generateSinglePostTemplate(postInfo) {
                         </a>
                     </div>
                     <div class="likes__counter">
-                        Piace a <b id="like-counter-1" class="js-likes-counter">${postInfo.likes}</b> persone
+                        Piace a <b id="like-counter-1" class="js-likes-counter">${likes}</b> persone
                     </div>
                 </div>
             </div>
